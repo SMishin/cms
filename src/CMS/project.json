@@ -28,10 +28,11 @@
 		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final"
 	},
 
-  "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel",
-    "ef": "EntityFramework.Commands"
-  },
+	"commands": {
+		"kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004",
+		"ef": "EntityFramework.Commands",
+		"web": "Microsoft.AspNet.Server.Kestrel"
+	},
 
   "frameworks": {
     "dnxcore50": { }
