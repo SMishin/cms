@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0-*",
+  "description": "ClassLibrary1 Class Library",
+  "authors": [ "Sergey" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+	"frameworks": {
+		"dnxcore50": {
+		}
+	},
+	"dependencies": {
+		"Dapper": "1.50.0-beta7"
+	}
+}
