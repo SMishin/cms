@@ -1,0 +1,5 @@
+src/CMS.Data/bin/
+src/CMS/bin/
+src/CMS/node_modules/
+src/CMS/node_modules/
+.vs/

@@ -5,6 +5,21 @@
 		"emitEntryPoint": true
 	},
 
+	"configurations": {
+		"Debug": {
+			"compilationOptions": {
+				"define": [ "DEBUG", "TRACE" ]
+			}
+		},
+		"Release": {
+			"compilationOptions": {
+				"define": [ "RELEASE", "TRACE" ],
+				"optimize": true
+			}
+		}
+	},
+
+
 	"dependencies": {
 		"CMS.Data": "1.0.0-*",
 		"EntityFramework.Commands": "7.0.0-rc1-final",
