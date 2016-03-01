@@ -3,3 +3,6 @@ src/CMS/bin/
 src/CMS/node_modules/
 src/CMS/node_modules/
 .vs/
+*.lock.json
+*.user
+.vs/

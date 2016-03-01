@@ -6,8 +6,7 @@
   "projectUrl": "",
   "licenseUrl": "",
 	"frameworks": {
-		"dnxcore50": { },
-		"dnx451": { }
+		"dnxcore50": { }
 	},
 	"dependencies": {
 		"Dapper": "1.50.0-beta7"
