@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using DBDeploy.CommandLine;
 using Npgsql;
 
 namespace DBDeploy
@@ -7,21 +9,8 @@ namespace DBDeploy
 	{
 		public static void Main(string[] args)
 		{
-			foreach (var fileName in Directory.GetFiles("./DB/Scheme"))
-			{
-				using (var conn = new NpgsqlConnection(AppSettings.Configuration["Data:DefaultConnection:ConnectionString"]))
-				{
-					conn.Open();
-					using (var cmd = new NpgsqlCommand())
-					{
-						cmd.Connection = conn;
-
-						// Insert some data
-						cmd.CommandText = File.ReadAllText(fileName);
-						cmd.ExecuteNonQuery();
-					}
-				}
-			}
+			var app = new DeployApp();
+			app.Run(Parser.Parse(args));
 		}
 	}
 }

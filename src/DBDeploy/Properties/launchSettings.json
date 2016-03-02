@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DBDeploy": {
+      "commandName": "DBDeploy",
+      "commandLineArgs": "-aa -rr --debug"
+    }
+  }
+}
