@@ -4,11 +4,12 @@ using Npgsql;
 
 namespace DBDeploy
 {
-	public class PostgreSqlDeployMethod : IDeployMethod, IDisposable
+	public class PostgreSqlScriptExecuter : IScriptExecuter
 	{
 		private readonly NpgsqlConnection _connection;
+		private bool _disposed;
 
-		public PostgreSqlDeployMethod(string connectionString)
+		public PostgreSqlScriptExecuter(string connectionString)
 		{
 			_connection = new NpgsqlConnection(connectionString);
 		}
@@ -20,11 +21,14 @@ namespace DBDeploy
 
 		public void Execute(string script)
 		{
+			if (_connection.State != System.Data.ConnectionState.Open)
+			{
+				_connection.Open();
+			}
+
 			using (var cmd = new NpgsqlCommand())
 			{
 				cmd.Connection = _connection;
-
-				// Insert some data
 				cmd.CommandText = script;
 				cmd.ExecuteNonQuery();
 			}
@@ -32,7 +36,20 @@ namespace DBDeploy
 
 		public void Dispose()
 		{
-			_connection.Dispose();
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (_disposed) return;
+
+			if (disposing)
+			{
+				_connection.Dispose();
+			}
+
+			_disposed = true;
 		}
 	}
 }

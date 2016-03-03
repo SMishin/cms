@@ -4,24 +4,22 @@ namespace DBDeploy
 {
 	public abstract class DeployRunner : IDeployRunner
 	{
-		private readonly IDeployMethod _deployMethod;
+		private readonly IScriptExecuter _scriptExecuter;
 
-		protected DeployRunner(IDeployMethod deployMethod)
+		protected DeployRunner(IScriptExecuter scriptExecuter)
 		{
-			_deployMethod = deployMethod;
+			_scriptExecuter = scriptExecuter;
 		}
 
 		public virtual void Start()
 		{
-			using (var connection = _deployMethod.GetConection())
+			foreach (var fileName in GetScripts())
 			{
-				connection.Open();
-
-				foreach (var fileName in GetScripts())
-				{
-					_deployMethod.Execute(File.ReadAllText(fileName));
-				}
+				_scriptExecuter.Execute(File.ReadAllText(fileName));
 			}
+
+			_scriptExecuter.Dispose();
+
 		}
 
 		protected abstract string[] GetScripts();

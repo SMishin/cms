@@ -4,7 +4,7 @@ namespace DBDeploy
 {
 	public class DeploySchemeRunner : DeployRunner
 	{
-		protected DeploySchemeRunner(IDeployMethod deployMethod) : base(deployMethod)
+		protected DeploySchemeRunner(IScriptExecuter scriptExecuter) : base(scriptExecuter)
 		{	
 		}
 
