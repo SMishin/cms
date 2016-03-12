@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace DBDeploy
+namespace DBDeploy.Console
 {
     public static class AppSettings
     {

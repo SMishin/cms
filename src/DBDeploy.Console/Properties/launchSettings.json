@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DBDeploy.Console": {
+      "commandName": "DBDeploy.Console",
+      "commandLineArgs": "m"
+    }
+  }
+}

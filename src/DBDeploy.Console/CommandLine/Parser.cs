@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DBDeploy.CommandLine
+namespace DBDeploy.Console.CommandLine
 {
     public static class Parser
     {

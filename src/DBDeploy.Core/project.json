@@ -1,16 +1,10 @@
 {
 	"version": "1.0.0-*",
-	"description": "DBDeploy Console Application",
+	"description": "DBDeploy.Core",
 	"authors": [ "SMishin" ],
 	"tags": [ "" ],
 	"projectUrl": "",
 	"licenseUrl": "",
-	"compilationOptions": {
-		"emitEntryPoint": true
-	},
-	"commands": {
-		"DBDeploy": "DBDeploy"
-	},
 	"frameworks": {
 		"dnxcore50": {
 			"dependencies": {
@@ -24,9 +18,5 @@
 				"Npgsql": "3.1.0-alpha6"
 			}
 		}
-	},
-    "dependencies": {
-        "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final"
-    }
+	}
 }
