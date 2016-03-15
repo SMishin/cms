@@ -1,4 +1,4 @@
-﻿namespace DBDeploy.Core
+﻿namespace DBDeploy.Core.Tasks
 {
 	public interface IDeployTask
 	{

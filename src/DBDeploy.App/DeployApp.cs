@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DBDeploy.Core;
+using DBDeploy.Core.Tasks;
 
 namespace DBDeploy.App
 {

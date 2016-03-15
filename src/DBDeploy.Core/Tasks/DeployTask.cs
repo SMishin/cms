@@ -1,11 +1,15 @@
 ﻿using System.IO;
+using System.Linq;
+using NLog;
 
-namespace DBDeploy.Core
+namespace DBDeploy.Core.Tasks
 {
 	public class DeployTask : IDeployTask
 	{
 		private readonly IScriptExecuter _migrationExecuter;
 		private readonly string _sciptsPath;
+
+		private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
 		public DeployTask(IScriptExecuter migrationExecuter, string sciptsPath)
 		{
@@ -15,10 +19,7 @@ namespace DBDeploy.Core
 
 		public virtual void Start()
 		{
-			foreach (var fileName in GetScripts())
-			{
-				RunScript(fileName);
-			}
+			RunFromDirectory(_sciptsPath);
 		}
 
 		protected virtual void RunScript(string fileName)
@@ -26,9 +27,18 @@ namespace DBDeploy.Core
 			_migrationExecuter.Execute(File.ReadAllText(fileName));
 		}
 
-		protected virtual string[] GetScripts()
+		protected virtual void RunFromDirectory(string path)
 		{
-			return Directory.GetFiles(_sciptsPath);
+			foreach (var directoryPath in Directory.GetDirectories(path).OrderBy(t => t))
+			{
+				RunFromDirectory(directoryPath);
+			}
+
+			foreach (var fileName in Directory.GetFiles(path).OrderBy(t => t))
+			{
+				Logger.Info(fileName);
+				//RunScript(fileName);
+			}
 		}
 	}
 }

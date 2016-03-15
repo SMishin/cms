@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DBDeploy.Core
+namespace DBDeploy.Core.Tasks
 {
 	public class DeployMigrationsTask : DeployTask
 	{
