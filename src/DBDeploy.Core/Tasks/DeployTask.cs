@@ -6,38 +6,38 @@ namespace DBDeploy.Core.Tasks
 {
 	public class DeployTask : IDeployTask
 	{
-		private readonly IScriptExecuter _migrationExecuter;
+		private readonly IScriptExecuter _scriptExecuter;
 		private readonly string _sciptsPath;
 
 		private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-		public DeployTask(IScriptExecuter migrationExecuter, string sciptsPath)
+		public DeployTask(IScriptExecuter scriptExecuter, string sciptsPath)
 		{
-			_migrationExecuter = migrationExecuter;
+			_scriptExecuter = scriptExecuter;
 			_sciptsPath = sciptsPath;
 		}
 
 		public virtual void Start()
 		{
-			RunFromDirectory(_sciptsPath);
+			ScanDirectory(_sciptsPath);
 		}
 
 		protected virtual void RunScript(string fileName)
 		{
-			_migrationExecuter.Execute(File.ReadAllText(fileName));
+			_scriptExecuter.Execute(File.ReadAllText(fileName));
+			Logger.Info(fileName);
 		}
 
-		protected virtual void RunFromDirectory(string path)
+		protected virtual void ScanDirectory(string path)
 		{
 			foreach (var directoryPath in Directory.GetDirectories(path).OrderBy(t => t))
 			{
-				RunFromDirectory(directoryPath);
+				ScanDirectory(directoryPath);
 			}
 
 			foreach (var fileName in Directory.GetFiles(path).OrderBy(t => t))
 			{
-				Logger.Info(fileName);
-				//RunScript(fileName);
+				RunScript(fileName);
 			}
 		}
 	}

@@ -2,7 +2,7 @@
   "profiles": {
     "DBDeploy.Console": {
       "commandName": "DBDeploy.Console",
-      "commandLineArgs": "s"
+      "commandLineArgs": "m"
     }
   }
 }

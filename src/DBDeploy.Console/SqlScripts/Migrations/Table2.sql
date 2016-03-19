@@ -1,6 +1,6 @@
 ﻿-- Table: public.weather
 
--- DROP TABLE public.weather;
+--DROP TABLE public.weather;
 
 CREATE TABLE public.weather
 (

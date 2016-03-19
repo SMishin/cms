@@ -8,9 +8,7 @@ namespace DBDeploy.Core.PostgreSql
 		protected override string MigrationsTableName => base.MigrationsTableName.ToLower();
 
 		public PostgreSqlMigrationExecuter(string connectionString) : base(new NpgsqlConnection(connectionString))
-		{
-
-		}
+		{}
 
 		protected override bool IsMigrationSchemeExists()
 		{
@@ -22,7 +20,9 @@ namespace DBDeploy.Core.PostgreSql
 			Execute($@"CREATE TABLE public.{MigrationsTableName}
 						(
 						  sctipt_name varchar(4000),
-						  date_time_stamp timestamp 
+						  script_text text,
+						  hash text,
+						  date_time_stamp timestamp without time zone default (now() at time zone 'utc')
 						)
 						WITH(
 						  OIDS = FALSE
@@ -30,10 +30,39 @@ namespace DBDeploy.Core.PostgreSql
 					);
 		}
 
-
 		protected override DbCommand CreateDbCommand()
 		{
 			return new NpgsqlCommand();
+		}
+
+		public override MigrationInfo GetMigrationInfo(string scriptName)
+		{
+			using (var command = (NpgsqlCommand)GetDbCommand())
+			{
+				command.CommandText =
+					$@" select * from public.{MigrationsTableName}
+						where sctipt_name = @script_name";
+
+				command.Parameters.Add(new NpgsqlParameter("@script_name", NpgsqlTypes.NpgsqlDbType.Varchar) { NpgsqlValue = scriptName });
+
+				using (var reader = command.ExecuteReader())
+				{
+					if (!reader.Read())
+					{
+						return null;
+					}
+
+					MigrationInfo mi = new MigrationInfo
+					{
+						ScriptName = reader.GetString(0),
+						ScriptText = reader.GetString(1),
+						Hash = reader.GetString(2),
+						DateTimeStamp = reader.GetDateTime(3)
+					};
+
+					return mi;
+				}
+			}
 		}
 
 		protected override void WriteMigrationInfo(MigrationInfo migrationInfo)
@@ -42,11 +71,12 @@ namespace DBDeploy.Core.PostgreSql
 			{
 				command.CommandText =
 					$@"insert into public.{MigrationsTableName}
-						(sctipt_name, date_time_stamp)
-						VALUES (@script_name, @date_time_stamp)";
+						(sctipt_name, script_text, hash)
+						VALUES (@sctipt_name, @script_text, @hash)";
 
-				command.Parameters.Add(new NpgsqlParameter("@script_name", NpgsqlTypes.NpgsqlDbType.Varchar) { NpgsqlValue = migrationInfo.ScriptName });
-				command.Parameters.Add(new NpgsqlParameter("@date_time_stamp", NpgsqlTypes.NpgsqlDbType.Timestamp) { NpgsqlValue = migrationInfo.DateTimeStamp });
+				command.Parameters.Add(new NpgsqlParameter("@sctipt_name", NpgsqlTypes.NpgsqlDbType.Varchar) { NpgsqlValue = migrationInfo.ScriptName });
+				command.Parameters.Add(new NpgsqlParameter("@script_text", NpgsqlTypes.NpgsqlDbType.Text) { NpgsqlValue = migrationInfo.ScriptText });
+				command.Parameters.Add(new NpgsqlParameter("@hash", NpgsqlTypes.NpgsqlDbType.Text) { NpgsqlValue = migrationInfo.Hash });
 
 				command.ExecuteNonQuery();
 			}

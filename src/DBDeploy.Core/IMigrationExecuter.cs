@@ -4,5 +4,6 @@
 	{
 		void WriteMigrationInfo(MigrationInfo migrationInfo);
 		bool IsExecuted(string scriptName);
+		MigrationInfo GetMigrationInfo(string scriptName);
 	}
 }

@@ -22,6 +22,8 @@ namespace DBDeploy.Core
 			return IsExecuted(scriptName);
 		}
 
+		public abstract MigrationInfo GetMigrationInfo(string scriptName);
+
 		protected abstract void WriteMigrationInfo(MigrationInfo migrationInfo);
 		protected abstract bool IsExecuted(string scriptName);
 
