@@ -16,8 +16,8 @@ namespace DBDeploy.App
 
 			_commands = new Dictionary<string, Action>
 			{
-				{"s", () => { new DeployTask(_sriptExecuter, appContext.SchemeScriptPath).Start(); }},
-				{"m", () => { new DeployMigrationsTask(_sriptExecuter, appContext.MigrationsScriptPath).Start(); }}
+				{"s", () => { new DeployTask(_sriptExecuter, appContext.SchemeScriptPath,appContext.ScriptsProvider).Start(); }},
+				{"m", () => { new DeployMigrationsTask(_sriptExecuter, appContext.MigrationsScriptPath,appContext.ScriptsProvider).Start(); }}
 			};
 
 		}

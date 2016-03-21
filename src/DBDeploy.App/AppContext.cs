@@ -1,10 +1,12 @@
 ﻿using DBDeploy.Core;
+using DBDeploy.Core.Tasks;
 
 namespace DBDeploy.App
 {
     public class AppContext
     {
 	    public IMigrationExecuter ScriptExecuter { get; set; }
+	    public IScriptsProvider ScriptsProvider { get; set; }
 
 		public string ScriptsRootPath { get; set; }
 		public string SchemeScriptDirectoryName { get; set; }

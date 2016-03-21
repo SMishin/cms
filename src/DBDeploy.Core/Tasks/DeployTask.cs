@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 using NLog;
 
 namespace DBDeploy.Core.Tasks
@@ -7,38 +6,30 @@ namespace DBDeploy.Core.Tasks
 	public class DeployTask : IDeployTask
 	{
 		private readonly IScriptExecuter _scriptExecuter;
+		private readonly IScriptsProvider _scriptsProvider;
 		private readonly string _sciptsPath;
 
 		private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-		public DeployTask(IScriptExecuter scriptExecuter, string sciptsPath)
+		public DeployTask(IScriptExecuter scriptExecuter, string sciptsPath, IScriptsProvider scriptsProvider)
 		{
 			_scriptExecuter = scriptExecuter;
 			_sciptsPath = sciptsPath;
+			_scriptsProvider = scriptsProvider;
 		}
 
 		public virtual void Start()
 		{
-			ScanDirectory(_sciptsPath);
+			foreach (var fileName in _scriptsProvider.GetScripts(_sciptsPath))
+			{
+				RunScript(fileName);
+			}
 		}
 
 		protected virtual void RunScript(string fileName)
 		{
-			_scriptExecuter.Execute(File.ReadAllText(fileName));
+			//_scriptExecuter.Execute(File.ReadAllText(fileName));
 			Logger.Info(fileName);
-		}
-
-		protected virtual void ScanDirectory(string path)
-		{
-			foreach (var directoryPath in Directory.GetDirectories(path).OrderBy(t => t))
-			{
-				ScanDirectory(directoryPath);
-			}
-
-			foreach (var fileName in Directory.GetFiles(path).OrderBy(t => t))
-			{
-				RunScript(fileName);
-			}
 		}
 	}
 }

@@ -1,6 +1,9 @@
 ﻿using DBDeploy.App;
 using DBDeploy.Console.CommandLine;
+using DBDeploy.Core;
 using DBDeploy.Core.PostgreSql;
+using DBDeploy.Core.ScriptProviders;
+using DBDeploy.Core.Tasks;
 
 namespace DBDeploy.Console
 {
@@ -13,7 +16,8 @@ namespace DBDeploy.Console
 				ScriptsRootPath = AppSettings.Configuration["ScriptsRootPath"],
 				SchemeScriptDirectoryName = AppSettings.Configuration["SchemeScriptDirectoryName"],
 				MigrationsScriptDirectoryName = AppSettings.Configuration["MigrationsScriptDirectoryName"],
-				ScriptExecuter = new PostgreSqlMigrationExecuter(AppSettings.Configuration["Data:DefaultConnection:ConnectionString"])
+				ScriptExecuter = new PostgreSqlMigrationExecuter(AppSettings.Configuration["Data:DefaultConnection:ConnectionString"]),
+				ScriptsProvider = new EntryPointScriptsProvider()
 			});
 
 			app.Run(Parser.Parse(args));

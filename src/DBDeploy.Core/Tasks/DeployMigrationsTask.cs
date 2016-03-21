@@ -10,7 +10,8 @@ namespace DBDeploy.Core.Tasks
 		private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 		private readonly IMigrationExecuter _migrationExecuter;
 
-		public DeployMigrationsTask(IMigrationExecuter migrationExecuter, string sciptsPath) : base(migrationExecuter, sciptsPath)
+		public DeployMigrationsTask(IMigrationExecuter migrationExecuter, string sciptsPath, IScriptsProvider scriptsProvider) 
+			: base(migrationExecuter, sciptsPath, scriptsProvider)
 		{
 			_migrationExecuter = migrationExecuter;
 		}
