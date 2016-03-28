@@ -6,3 +6,4 @@ src/CMS/node_modules/
 *.lock.json
 *.user
 .vs/
+*node_modules
