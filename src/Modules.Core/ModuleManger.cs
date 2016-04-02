@@ -4,21 +4,21 @@ namespace Modules.Core
 {
 	public class ModuleManger : IModuleManger
 	{
-		private readonly List<IModule> modules;
+		private readonly List<IModule> _modules;
 
 		public ModuleManger()
 		{
-			modules = new List<IModule>();
+			_modules = new List<IModule>();
 		}
 
 		public void Register<TModule>() where TModule : IModule, new()
 		{
-			modules.Add(new TModule());
+			_modules.Add(new TModule());
 		}
 
 		public IEnumerable<IModule> GetModules()
 		{
-			return modules;
+			return _modules;
 		}
 	}
 }

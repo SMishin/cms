@@ -3,6 +3,7 @@ using Microsoft.AspNet.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Modules.Core;
+using System.Reflection;
 
 namespace Modules.CMS.Web
 {
@@ -16,7 +17,7 @@ namespace Modules.CMS.Web
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			
+			services.AddMvc().AddPrecompiledRazorViews(GetType().GetTypeInfo().Assembly);
 		}
 
 		public void Configure(IApplicationBuilder applicationBuilder)

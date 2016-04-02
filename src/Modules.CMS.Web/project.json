@@ -18,6 +18,9 @@
 		"System.Runtime": "4.0.21-beta-23516",
 		"System.Threading": "4.0.11-beta-23516",
 		"Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
-		"Microsoft.AspNet.Routing": "1.0.0-rc1-final"
-	}
+		"Microsoft.AspNet.Routing": "1.0.0-rc1-final",
+		"System.Reflection": "4.1.0-beta-23516"
+	},
+
+	"resource": [ "**/*.cshtml" ]
 }
