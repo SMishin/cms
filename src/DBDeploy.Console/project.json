@@ -13,6 +13,9 @@
 	"commands": {
 		"DBDeploy.Console": "DBDeploy.Console"
 	},
+	"content": [
+		"NLog.config"
+	],
 
 	"frameworks": {
 		"dnxcore50": {

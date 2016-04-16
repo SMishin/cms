@@ -29,6 +29,7 @@
 		"Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
 		"Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
 		"Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+		"Microsoft.AspNet.Mvc.Razor": "6.0.0-rc1-final",
 		"Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-rc1-final",
 		"Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
 		"Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
@@ -41,8 +42,6 @@
 		"Microsoft.Extensions.Logging": "1.0.0-rc1-final",
 		"Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
 		"Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
-		"Modules.CMS.Web": "1.0.0-*",
 		"System.Linq": "4.0.1-beta-23516",
 		"System.Reflection": "4.1.0-beta-23516"
 	},
@@ -55,10 +54,11 @@
 	"frameworks": {
 		"dnxcore50": { }
 	},
-
+	"compile": "*.cs",
 	"exclude": [
 		"wwwroot",
-		"node_modules"
+		"node_modules",
+		"Modules"
 	],
 	"publishExclude": [
 		"**.user",

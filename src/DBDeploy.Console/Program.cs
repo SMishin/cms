@@ -1,9 +1,7 @@
 ﻿using DBDeploy.App;
 using DBDeploy.Console.CommandLine;
-using DBDeploy.Core;
 using DBDeploy.Core.PostgreSql;
 using DBDeploy.Core.ScriptProviders;
-using DBDeploy.Core.Tasks;
 
 namespace DBDeploy.Console
 {
@@ -11,6 +9,12 @@ namespace DBDeploy.Console
 	{
 		public static void Main(string[] args)
 		{
+			if (args == null || args.GetLength(0) == 0)
+			{
+				var strAgs = System.Console.ReadLine();
+				args = strAgs.Split(' ');
+			}
+
 			var app = new DeployApp(new AppContext
 			{
 				ScriptsRootPath = AppSettings.Configuration["ScriptsRootPath"],

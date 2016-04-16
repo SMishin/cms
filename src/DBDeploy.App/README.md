@@ -1,0 +1,2 @@
+s - scheme
+m - migrations

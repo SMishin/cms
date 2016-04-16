@@ -7,3 +7,5 @@ src/CMS/node_modules/
 *.user
 .vs/
 *node_modules
+artifacts
+.idea

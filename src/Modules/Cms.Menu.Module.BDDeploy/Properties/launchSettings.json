@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Cms.Menu.Module.BDDeploy": {
+      "commandName": "Cms.Menu.Module.BDDeploy",
+      "commandLineArgs": "s"
+    }
+  }
+}

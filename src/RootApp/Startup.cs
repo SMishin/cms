@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
@@ -12,12 +10,6 @@ using CMS.Services;
 using Modules.CMS.Web;
 using Modules.Core;
 using System.Linq;
-using System.Reflection;
-using Microsoft.AspNet.FileProviders;
-using Microsoft.AspNet.Mvc.Infrastructure;
-using Microsoft.AspNet.Mvc.Razor;
-using Microsoft.Extensions.PlatformAbstractions;
-using Microsoft.Dnx.Runtime;
 
 namespace CMS
 {
@@ -60,19 +52,6 @@ namespace CMS
 				.AddEntityFrameworkStores<ApplicationDbContext>()
 				.AddDefaultTokenProviders();
 
-	
-
-			services.Configure<RazorViewEngineOptions>(options =>
-			{
-				options.FileProvider = new CompositeFileProvider(
-					new EmbeddedFileProvider(
-						typeof(CmsModule).GetTypeInfo().Assembly,
-						"Modules.CMS.Web" // your external assembly's base namespace
-					),
-					options.FileProvider
-				);
-			});
-
 
 			services
 				.AddMvc()
@@ -91,7 +70,6 @@ namespace CMS
 
 			if (env.IsDevelopment())
 			{
-				app.UseBrowserLink();
 				app.UseDeveloperExceptionPage();
 				app.UseDatabaseErrorPage();
 			}

@@ -28,7 +28,7 @@ namespace DBDeploy.Core.Tasks
 
 		protected virtual void RunScript(string fileName)
 		{
-			//_scriptExecuter.Execute(File.ReadAllText(fileName));
+			_scriptExecuter.Execute(File.ReadAllText(fileName));
 			Logger.Info(fileName);
 		}
 	}
