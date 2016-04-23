@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using Cms.Core;
+using Cms.Menu.Module;
+using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
@@ -7,8 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using CMS.Models;
 using CMS.Services;
-using Modules.CMS.Web;
-using Modules.Core;
 using System.Linq;
 
 namespace CMS
@@ -122,7 +122,7 @@ namespace CMS
 		private void ConfigureModulesServices(IServiceCollection services)
 		{
 			_moduleManger = new ModuleManger();
-			_moduleManger.Register<CmsModule>();
+			_moduleManger.Register<MenuModule>();
 
 			foreach (var module in _moduleManger.GetModules())
 			{

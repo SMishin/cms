@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Routing;
 
-namespace Modules.CMS.Web
+namespace Cms.Menu.Module
 {
-	public static class CrmRouteBuilderExtensions
+	public static class MenuRouteBuilderExtensions
 	{
 		public static IRouteBuilder MapCmsRoutes(this IRouteBuilder routeBuilder)
 		{
 			routeBuilder.MapRoute(
-				name: "cmsDefault",
-				template: "_cms/{controller=Cms}/{action=Index}/{id?}"
+				name: "menuDefault",
+				template: "_cms/menu/{controller=Menu}/{action=Index}/{id?}"
 			);
 
 			return routeBuilder;

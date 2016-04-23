@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Modules.Core
+namespace Cms.Core
 {
 	public interface IModuleManger
 	{

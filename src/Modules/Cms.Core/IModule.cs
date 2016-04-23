@@ -3,7 +3,7 @@ using Microsoft.AspNet.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Modules.Core
+namespace Cms.Core
 {
 	public interface IModule
 	{

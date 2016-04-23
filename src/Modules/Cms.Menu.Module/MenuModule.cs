@@ -1,6 +1,12 @@
-﻿namespace _cms.MenuModule
+﻿using Cms.Core;
+using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Routing;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Cms.Menu.Module
 {
-	public class CmsModule : IModule
+	public class MenuModule : IModule
 	{
 		public void SetConfigurationRoot(IConfigurationRoot configurationRoot)
 		{
@@ -9,11 +15,6 @@
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.Configure<RazorViewEngineOptions>(options =>
-			{
-				options.ViewLocationExpanders.Add(new ModulesViewLocationExpander());
-			});
-
 		}
 
 		public void Configure(IApplicationBuilder applicationBuilder)

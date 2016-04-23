@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNet.Mvc;
 
-namespace Modules.CMS.Web.Controllers
+namespace CMS.Controllers
 {
     public class CmsController : Controller
-    {
-	    public IActionResult Index()
+	{
+		[Route("_cms")]
+		public IActionResult Index()
 	    {
 		    return View();
 	    }
