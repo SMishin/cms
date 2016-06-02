@@ -1,15 +1,27 @@
 {
-	"version": "1.0.0",
-	"name": "_cms",
-	"private": true,
-	"dependencies": {
-		"angular2": "2.0.0-beta.15",
-		"es6-shim": "^0.35.0",
-		"reflect-metadata": "0.1.2",
-		"rxjs": "5.0.0-beta.2",
-		"zone.js": "0.6.10"
-	},
-	"devDependencies": {
-
-	}
+  "version": "1.0.0",
+  "name": "_cms",
+  "private": true,
+  "dependencies": {
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-router": "^2.4.0"
+  },
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.0",
+    "babel-core": "^6.8.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.5.0"
+  }
 }
